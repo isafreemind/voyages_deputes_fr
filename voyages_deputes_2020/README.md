@@ -18,6 +18,14 @@ python -m unittest discover -s voyages_deputes_2020 -p test_relations.py
 
 Le référentiel `organisations_referentiel.json` est éditable. Les alias sont rapprochés sans tenir compte de la casse, des accents et de certains séparateurs. Les appellations de réseaux peuvent réunir plusieurs branches ; ce ne sont pas des identifiants de personnes morales. Les mots courts, les noms de pays seuls, les homonymes et les acteurs non répertoriés ne sont pas automatiquement fusionnés.
 
+## Partis et groupes parlementaires
+
+`politique_reference.json` est un extrait de l'[historique des députés de l'Assemblée nationale](https://data.assemblee-nationale.fr/acteurs/historique-des-deputes), avec l'URL et l'empreinte SHA-256 de l'archive d'origine. Il contient seulement les acteurs présents dans le CSV et leurs mandats `PARPOL` et `GP`.
+
+Pour chaque déclaration, `politique` conserve le rattachement à un parti ou groupement **au titre du financement de la vie politique** et le groupe parlementaire actifs à la date de début du voyage. Ces deux informations sont distinctes et le rattachement financier n'est pas une preuve d'adhésion. Les noms et prénoms sont rapprochés sans accents ni ponctuation ; une homonymie provoque une erreur lors de l'extraction. Les fins de mandat sont incluses. Un rattachement absent ou contradictoire reste inconnu, sans utilisation d'une affiliation antérieure ou postérieure. Chaque attribution conserve les identifiants et dates des mandats.
+
+Pour actualiser l'extrait, télécharger l'archive ZIP indiquée dans `extraire_politique.py` sous le nom `acteurs_historique_source.zip` dans ce dossier, puis exécuter `python voyages_deputes_2020/extraire_politique.py` et reconstruire la base. L'archive complète est ignorée par Git ; l'extrait est versionné.
+
 ELNET : les variantes `ELNET`, `EL.NET` et les domaines `elnetwork.fr`/`.eu` identifient le réseau. Le nom développé `European Leadership Network` seul reste ambigu ; sa présence avec un alias distinctif dans la même déclaration permet de le résoudre. Le libellé `ELN - European Leadership Network` reste à vérifier.
 
 Les rôles proviennent de règles lexicales conservatrices, non d'une vérification externe. « Cité au financement » signifie présence dans le champ Tiers financeur, sans preuve du montant payé. Les partenaires indirects, invitations, prises en charge et exclusions sont distingués quand la phrase permet de les détecter. Les relations n'établissent aucune causalité, influence ou coordination. Les montants ne sont pas attribués aux organisations ni additionnés.

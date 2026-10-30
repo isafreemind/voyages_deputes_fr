@@ -7,6 +7,7 @@ from collections import Counter
 from datetime import datetime
 from pathlib import Path
 from relations import enrichir
+from politique import enrichir_politique
 
 ROOT = Path(__file__).resolve().parent
 SOURCE = ROOT / 'voyages_deputes.csv'
@@ -105,6 +106,7 @@ doc={'metadonnees':{
     'tags_disponibles':list(TAG_PATTERNS),
 }, 'voyages':voyages}
 doc=enrichir(doc)
+doc=enrichir_politique(doc)
 with OUTPUT.open('w',encoding='utf-8',newline='\n') as f:
     json.dump(doc,f,ensure_ascii=False,indent=2)
     f.write('\n')

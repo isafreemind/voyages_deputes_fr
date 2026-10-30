@@ -77,4 +77,18 @@ class RelationsTest(unittest.TestCase):
                 self.assertIn(p['texte'],v['destination']['texte'])
                 self.assertIn(p['pays'],v['destination']['pays_reperes'])
 
+    def test_rattachements_historiques(self):
+        v=next(v for v in self.data['voyages'] if v['depute']['nom_complet']=='YADAN Caroline' and v['periode']['debut']=='2023-01-03')
+        self.assertEqual(v['politique']['parti']['nom'],'Ensemble')
+        self.assertEqual(v['politique']['groupe']['nom'],'Renaissance')
+        self.assertEqual(v['politique']['date_reference'],'2023-01-03')
+        v=next(v for v in self.data['voyages'] if v['depute']['nom_complet']=='JUVIN Philippe' and v['periode']['debut']=='2022-11-17')
+        self.assertEqual(v['politique']['parti']['statut'],'inconnu')
+        for v in self.data['voyages']:
+            for field in ('parti','groupe'):
+                p=v['politique'][field]
+                if p['statut']=='identifie':
+                    self.assertTrue(p['mandats'])
+                    self.assertTrue(all(m['debut']<=v['periode']['debut'] and (not m['fin'] or v['periode']['debut']<=m['fin']) for m in p['mandats']))
+
 if __name__=='__main__': unittest.main()

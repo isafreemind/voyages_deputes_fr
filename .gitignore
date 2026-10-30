@@ -3,6 +3,7 @@
 **/*.tsbuildinfo
 **/__pycache__/
 *.py[cod]
+voyages_deputes_2020/acteurs_historique_source.zip
 .DS_Store
 
 # Copies créées automatiquement depuis voyages_deputes_2020/base_voyages.json
