@@ -1,0 +1,71 @@
+{
+  "methode": "Regroupements analytiques de libellés historiques, non identité juridique. Chaque déclaration conserve le libellé et l'identifiant officiel à la date du voyage. Les groupes parlementaires sont traités séparément des rattachements au titre du financement politique.",
+  "parti": [
+    {
+      "id": "ensemble-coalition",
+      "nom": "Ensemble / Ensemble !",
+      "organes": ["PO806430", "PO833003"],
+      "libelles": ["Ensemble", "Ensemble ! (majorité présidentielle)"],
+      "note": "Rapprochement analytique des deux libellés de groupement au titre du financement public. Il ne permet pas de déterminer l'adhésion individuelle à Renaissance, au MoDem ou à Horizons.",
+      "sources": ["https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2024", "https://www2.assemblee-nationale.fr/deputes/liste/partis-politiques?annee=2025", "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000049112219"]
+    },
+    {
+      "id": "eelv-ecologistes",
+      "nom": "EELV / Les Écologistes",
+      "organes": ["PO684936", "PO852530"],
+      "libelles": ["Europe Écologie Les Verts", "Les Écologistes - EELV"],
+      "note": "Rapprochement des libellés historiques EELV et Les Écologistes.",
+      "sources": ["https://lesecologistes.fr/posts/6OfZQDqgftAYeUEn61UF7G/resultats-du-vote-sur-les-nouveaux-statuts"]
+    }
+  ],
+  "groupe": [
+    {
+      "id": "lrem-renaissance-epr",
+      "nom": "Groupes LREM / Renaissance / EPR",
+      "organes": ["PO730964", "PO800538", "PO845407"],
+      "libelles": ["La République en Marche", "Renaissance", "Ensemble pour la République"],
+      "note": "Regroupement analytique de groupes parlementaires successifs, dont la composition peut varier. Il ne détermine pas le parti individuel des membres.",
+      "sources": ["https://www2.assemblee-nationale.fr/sycomore/fiche/19169?legislature=62", "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000049112219"]
+    },
+    {
+      "id": "lr-droite-republicaine",
+      "nom": "Groupes Les Républicains / Droite Républicaine",
+      "organes": ["PO730934", "PO800508", "PO845425"],
+      "libelles": ["Les Républicains", "Droite Républicaine"],
+      "note": "Regroupement de groupes successifs ; leurs membres ne sont pas nécessairement tous adhérents au parti Les Républicains.",
+      "sources": ["https://www2.assemblee-nationale.fr/content/download/935572/8893216/version/1/file/DR%2BComptes%2B2024.pdf"]
+    },
+    {
+      "id": "soc-apparentes",
+      "nom": "Groupes Socialistes et apparentés",
+      "organes": ["PO758835", "PO830170", "PO845419", "PO800496"],
+      "libelles": ["Socialistes et apparentés", "Socialistes et apparentés (membre de l’intergroupe NUPES)"],
+      "note": "Les libellés avec ou sans mention de l'intergroupe sont rapprochés ; la composition varie selon la législature.",
+      "sources": ["https://www2.assemblee-nationale.fr/16/les-groupes-politiques/socialistes-et-apparentes/declaration/declaration"]
+    },
+    {
+      "id": "lfi-groupes",
+      "nom": "Groupes LFI (NUPES / NFP)",
+      "organes": ["PO800490", "PO845413"],
+      "libelles": ["La France insoumise - Nouvelle Union Populaire écologique et sociale", "La France insoumise - Nouveau Front Populaire"],
+      "note": "Regroupement analytique des groupes parlementaires LFI sous deux libellés d'alliance distincts.",
+      "sources": ["https://www2.assemblee-nationale.fr/16/les-groupes-politiques/modifications-a-la-composition-des-groupes/2023", "https://www2.assemblee-nationale.fr/deputes/liste/groupe-politique"]
+    },
+    {
+      "id": "democrates-groupes",
+      "nom": "Groupes démocrates (MoDem et alliés)",
+      "organes": ["PO774834", "PO800484", "PO845454"],
+      "libelles": ["Mouvement Démocrate (MoDem) et Démocrates apparentés", "Démocrate (MoDem et Indépendants)", "Les Démocrates"],
+      "note": "Regroupement analytique de groupes démocrates successifs ; il ne prouve pas l'adhésion individuelle au MoDem.",
+      "sources": ["https://www2.assemblee-nationale.fr/sycomore/fiche?num_dept=19323"]
+    },
+    {
+      "id": "horizons-groupes",
+      "nom": "Groupes Horizons et apparentés / indépendants",
+      "organes": ["PO800514", "PO845470"],
+      "libelles": ["Horizons et apparentés", "Horizons & Indépendants"],
+      "note": "Regroupement analytique de groupes successifs, avec leurs apparentés et indépendants.",
+      "sources": ["https://www2.assemblee-nationale.fr/sycomore/fiche/19336"]
+    }
+  ]
+}

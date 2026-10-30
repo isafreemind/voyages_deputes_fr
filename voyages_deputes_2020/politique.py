@@ -11,6 +11,16 @@ def key(text):
 
 def enrichir_politique(doc):
     ref=json.loads((ROOT/'politique_reference.json').read_text(encoding='utf-8'))
+    regroupements=json.loads((ROOT/'regroupements_politiques.json').read_text(encoding='utf-8'))
+    index={}
+    for field in ('parti','groupe'):
+        index[field]={}
+        for famille in regroupements[field]:
+            for oid in famille['organes']:
+                if oid in index[field]: raise ValueError('Organe présent dans plusieurs regroupements : '+oid)
+                if oid in ref['organes'] and ref['organes'][oid]['nom'] not in famille['libelles']:
+                    raise ValueError('Libellé du regroupement à vérifier : '+oid)
+                index[field][oid]=famille
     couverture={'parti_identifie':0,'groupe_identifie':0,'parti_inconnu':0,'groupe_inconnu':0}
     for voyage in doc['voyages']:
         acteur=ref['acteurs'].get(key(voyage['depute']['nom_complet']))
@@ -28,6 +38,9 @@ def enrichir_politique(doc):
                 oid=ids[0];o=ref['organes'][oid]
                 result[field]={'statut':'identifie','id':oid,'nom':o['nom'],'sigle':o['sigle'],
                                'mandats':[{'id':m['uid'],'debut':m['debut'],'fin':m['fin'],'qualite':m['qualite']} for m in records]}
+                famille=index[field].get(oid)
+                result[field]['regroupement']={'id':famille['id'] if famille else 'libelle:'+o['nom'],
+                    'nom':famille['nom'] if famille else o['nom']}
                 couverture[field+'_identifie']+=1
             else:
                 result[field]={'statut':'ambigu' if len(ids)>1 else 'inconnu','candidats':[ref['organes'][i] for i in ids]}
@@ -38,5 +51,5 @@ def enrichir_politique(doc):
         'parti':'Rattachement à un parti ou groupement au titre du financement public. Il ne démontre pas une adhésion ; l’absence de donnée est laissée inconnue.',
         'groupe':'Groupe parlementaire au cours de la législature de la déclaration, non assimilé à un parti.',
         'methode':'Rapprochement par nom et prénom normalisés puis comparaison des périodes officielles ; homonymies ou mandats contradictoires laissés non attribués.',
-        'couverture':couverture}
+        'regroupements':regroupements, 'couverture':couverture}
     return doc

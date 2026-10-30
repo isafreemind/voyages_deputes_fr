@@ -91,4 +91,19 @@ class RelationsTest(unittest.TestCase):
                     self.assertTrue(p['mandats'])
                     self.assertTrue(all(m['debut']<=v['periode']['debut'] and (not m['fin'] or v['periode']['debut']<=m['fin']) for m in p['mandats']))
 
+    def test_regroupements_preservent_les_libelles(self):
+        elnet=[v for v in self.data['voyages'] if any(r['organisation_id']=='elnet' and 'cite_dans_financement' in r['roles'] for r in v['organisations'])]
+        ensemble=[v for v in elnet if v['politique']['parti'].get('regroupement',{}).get('id')=='ensemble-coalition']
+        self.assertEqual(len(ensemble),29)
+        self.assertEqual({v['politique']['parti']['nom'] for v in ensemble},{'Ensemble','Ensemble ! (majorité présidentielle)'})
+        marche=[v for v in self.data['voyages'] if v['politique']['parti'].get('nom')=='La République en Marche']
+        self.assertTrue(marche)
+        self.assertTrue(all(v['politique']['parti']['regroupement']['id']!='ensemble-coalition' for v in marche))
+        for v in self.data['voyages']:
+            for mode in ('parti','groupe'):
+                a=v['politique'][mode]
+                if a['statut']=='identifie':
+                    self.assertTrue(a['nom'])
+                    self.assertTrue(a['regroupement']['nom'])
+
 if __name__=='__main__': unittest.main()
