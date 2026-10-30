@@ -1,0 +1,10 @@
+**/node_modules/
+**/dist/
+**/*.tsbuildinfo
+**/__pycache__/
+*.py[cod]
+.DS_Store
+
+# Copies créées automatiquement depuis voyages_deputes_2020/base_voyages.json
+dashboard-voyages/src/base_voyages.json
+dashboard-voyages/public/base_voyages.json
